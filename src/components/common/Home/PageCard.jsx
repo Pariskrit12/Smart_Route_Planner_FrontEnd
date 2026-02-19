@@ -1,5 +1,7 @@
 import { Icon } from "@iconify/react";
 import React from "react";
+import { Link } from "react-router-dom";
+import LinkButton from "../LinkButton";
 
 const PageCard = ({
   icon,
@@ -10,12 +12,10 @@ const PageCard = ({
   iconColor,
   bg_color,
   hoverColor,
+  to,
 }) => {
   return (
-    <div
-     
-      className="flex items-center gap-5 px-6 py-5 rounded-2xl shadow-[0_0_5px_rgba(0,0,0,0.25)] "
-    >
+    <div className="flex item-center gap-5 px-6 py-5 rounded-2xl shadow-[0_0_5px_rgba(0,0,0,0.25)] ">
       <div>
         <Icon icon={icon} width={40} height={40} color={iconColor} />
       </div>
@@ -35,7 +35,7 @@ const PageCard = ({
           style={{ backgroundColor: `#${bg_color}` }}
           className="flex items-center text-white  p-1 justify-evenly rounded-lg xs:w-62.5  "
         >
-          <a href="">{linkToPage}</a>
+          <LinkButton name={linkToPage} pageLink={to} />
           <Icon icon="tabler:arrow-right" height={20} width={20} />
         </div>
       </div>
