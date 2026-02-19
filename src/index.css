@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+body {
+  @apply bg-[#f6f9fd] font-sans ;
+}
+
+@theme {
+  --breakpoint-xs: 23.4375rem;   /* ~375px */
+}
