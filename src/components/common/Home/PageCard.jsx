@@ -33,10 +33,9 @@ const PageCard = ({
         </div>
         <div
           style={{ backgroundColor: `#${bg_color}` }}
-          className="flex items-center text-white  p-1 justify-evenly rounded-lg xs:w-62.5  "
+          className="flex items-center text-white  p-1 justify-evenly rounded-lg  xs:w-62.5  "
         >
-          <LinkButton name={linkToPage} pageLink={to} />
-          <Icon icon="tabler:arrow-right" height={20} width={20} />
+          <LinkButton name={linkToPage} pageLink={to} icon="tabler:arrow-right"  />
         </div>
       </div>
     </div>
