@@ -1,8 +1,13 @@
+import { Icon } from '@iconify/react'
 import React from 'react'
 
-const Button = ({className,name}) => {
+const Button = ({className,name,icon}) => {
   return (
-   <button className={className}>{name}</button>
+  <div className={className}>
+
+    <button>{name}</button>
+    <Icon icon={icon} width={20} height={20}/>
+  </div>
   )
 }
 
