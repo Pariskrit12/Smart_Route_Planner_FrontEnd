@@ -2,7 +2,7 @@ import React from "react";
 
 const RouteStartCard = ({startLocation}) => {
   return (
-    <div className="flex p-5 gap-2">
+    <div className="flex p-5 gap-2 border-b border-b-gray-400">
       <div className="bg-green-500 font-bold text-white h-fit py-3 px-5 rounded-full  ">
         A
       </div>
