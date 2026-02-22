@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Planner from "./pages/Planner";
 import Map from "./pages/Map";
 import Result from "./pages/Result";
+import Settings from "./pages/Settings";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/planner" element={<Planner />} />
         <Route path="/map" element={<Map />} />
         <Route path="/results" element={<Result />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
       <Footer />
     </>

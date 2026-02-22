@@ -3,7 +3,6 @@ import FeatureCard from "../components/common/FeatureCard";
 import PageCard from "../components/Home/PageCard";
 import Button from "../components/common/Button";
 import { Icon } from "@iconify/react";
-import Footer from "../components/common/Footer";
 import { featureCardContent } from "../Data/featureCardContent";
 import { pageCardContent } from "../Data/pageCardContent";
 const Home = () => {
@@ -36,7 +35,7 @@ const Home = () => {
         </div>
       </section>
       <section className="lg:flex justify-center">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2  lg:w-[80rem]">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2  lg:w-7xl">
           {pageCardContent.map((elem, index) => (
             <PageCard
               key={index}
@@ -54,7 +53,7 @@ const Home = () => {
         </div>
       </section>
       <section className="lg:flex justify-center">
-        <div className="flex flex-col items-center text-white bg-blue-700 py-5 px-10 gap-5 rounded-2xl lg:w-[50rem]">
+        <div className="flex flex-col items-center text-white bg-blue-700 py-5 px-10 gap-5 rounded-2xl lg:w-200">
           <h2 className="text-2xl font-bold text-center">
             Ready To Plan Your Route?
           </h2>
