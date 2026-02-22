@@ -1,6 +1,6 @@
 import React from "react";
 import FeatureCard from "../components/common/FeatureCard";
-import PageCard from "../components/common/Home/PageCard";
+import PageCard from "../components/Home/PageCard";
 import Button from "../components/common/Button";
 import { Icon } from "@iconify/react";
 import Footer from "../components/common/Footer";

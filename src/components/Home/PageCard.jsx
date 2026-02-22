@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import React from "react";
 import { Link } from "react-router-dom";
-import LinkButton from "../LinkButton";
+import LinkButton from "../common/LinkButton";
 
 const PageCard = ({
   icon,
