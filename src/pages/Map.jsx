@@ -149,7 +149,7 @@ const Map = () => {
                 </React.Fragment>
               ))}
             </div>
-            <div className="absolute h-10 max-w-fit top-3 z-50 right-2 grid grid-cols-1 gap-2 ">
+            <div className="absolute h-10 max-w-fit top-3 z-25 right-2 grid grid-cols-1 gap-2 ">
               {mapFeatuerIcon.map((elem, index) => (
                 <MapFeatureIcon key={index} icon={elem.icon} />
               ))}
