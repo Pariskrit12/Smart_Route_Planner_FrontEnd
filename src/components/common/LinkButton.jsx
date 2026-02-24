@@ -2,11 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 
-const LinkButton = ({ pageLink, name, className=" ", icon }) => {
+const LinkButton = ({ pageLink, name, className = " ", icon }) => {
   return (
     <div className={`flex items-center gap-2  ${className}`}>
       <Link to={pageLink}>{name}</Link>
-      <Icon icon={icon} height={20} width={20} />
+
+      {icon && <Icon icon={icon} height={20} width={20} />}
     </div>
   );
 };
