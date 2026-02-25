@@ -9,6 +9,8 @@ import Result from "./pages/Result";
 import Settings from "./pages/Settings";
 
 import Register from "./components/common/Register";
+import Login from "./components/common/Login";
+import AuthModal from "./components/auth/AuthModal";
 
 const App = () => {
   return (
@@ -23,7 +25,7 @@ const App = () => {
           <Route path="/settings" element={<Settings />} />
         </Routes>
         <Footer />
-        <Register />
+        <AuthModal/>
       </div>
     </>
   );
