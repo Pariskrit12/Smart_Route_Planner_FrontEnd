@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Button from "./Button";
 import Input from "../auth/Input";
 
-const Register = () => {
+const Register = ({showLogin}) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -76,7 +76,7 @@ const Register = () => {
         />
         <div className="flex gap-2  text-gray-500">
           Already have an account?
-          <span className=" text-black font-semibold">Sign in</span>
+          <span onClick={showLogin} className=" text-black font-semibold cursor-pointer">Sign in</span>
         </div>
         <Icon
           className="absolute right-2 top-2 rounded-full hover:bg-gray-300 hover:cursor-pointer  "
