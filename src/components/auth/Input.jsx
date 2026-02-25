@@ -11,7 +11,7 @@ const Input = ({ label, placeholder, type, onChange, value }) => {
       <div className="border rounded-lg p-2 border-gray-300 flex items-center gap-2 justify-between  ">
         <input
           onChange={onChange}
-          className="outline-none bg-amber-300  "
+          className="outline-none   "
           type={actualType}
           placeholder={placeholder}
           value={value}

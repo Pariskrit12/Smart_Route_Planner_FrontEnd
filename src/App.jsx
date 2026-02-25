@@ -8,18 +8,23 @@ import Map from "./pages/Map";
 import Result from "./pages/Result";
 import Settings from "./pages/Settings";
 
+import Register from "./components/common/Register";
+
 const App = () => {
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/planner" element={<Planner />} />
-        <Route path="/map" element={<Map />} />
-        <Route path="/results" element={<Result />} />
-        <Route path="/settings" element={<Settings />} />
-      </Routes>
-      <Footer />
+      <div className="relative">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/planner" element={<Planner />} />
+          <Route path="/map" element={<Map />} />
+          <Route path="/results" element={<Result />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
+        <Footer />
+        <Register />
+      </div>
     </>
   );
 };

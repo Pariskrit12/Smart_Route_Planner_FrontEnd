@@ -21,7 +21,7 @@ const Register = () => {
     <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/40 backdrop-blur-sm ">
       <form
         onSubmit={(e) => formHandler(e)}
-        className="relative bg-white flex flex-col items-center p-6 gap-5 rounded-xl w-[400px]  shadow-[0_0_20px_rgba(0,0,0,0.35)]"
+        className="relative bg-white flex flex-col items-center p-6 gap-5 rounded-xl w-100  shadow-[0_0_20px_rgba(0,0,0,0.35)]"
       >
         <Icon icon="tdesign:user-add" width={50} height={50} />
 
