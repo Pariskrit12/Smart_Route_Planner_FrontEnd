@@ -5,10 +5,12 @@ export const validation = (username, email, password) => {
   if (!username.trim()) {
     newErrors.username = "Username is Required";
   }
-  if (!email.trim()) {
-    newErrors.email = "Email is Required";
-  } else if (!emailRegex.test(email)) {
-    newErrors.email = "Invalid email";
+  if (email !== undefined) {
+    if (!email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!emailRegex.test(email)) {
+      newErrors.email = "Invalid email";
+    }
   }
 
   if (!password) {
