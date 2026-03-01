@@ -2,17 +2,28 @@ import { Icon } from "@iconify/react";
 import React, { useState } from "react";
 import Button from "./Button";
 import Input from "../auth/Input";
+import { validation } from "../../utils/validation";
 
-const Login = ({openRegister}) => {
+const Login = ({ openRegister,onClose }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [close, setClose] = useState("");
+
+
+  const [error, setError] = useState({});
   const formHandler = (e) => {
     e.preventDefault();
+
+    const validationErrors = validation(username, undefined, password);
+    setError(validationErrors);
+
+    if (Object.keys(validationErrors).length !== 0) return;
+
+    setError({});
     setPassword("");
     setUsername("");
+   
   };
-  if (close) return null;
+ 
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/40 backdrop-blur-sm ">
       <form
@@ -46,6 +57,7 @@ const Login = ({openRegister}) => {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            error={error.username}
           />
           <Input
             label="Password"
@@ -53,22 +65,29 @@ const Login = ({openRegister}) => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            error={error.password}
           />
         </div>
         <Button
+          type="submit"
           name="Sign In"
           className="bg-black text-white w-full flex justify-center p-1 rounded-lg"
         />
         <div className="flex gap-2  text-gray-500">
           Don't have an account?
-          <span onClick={openRegister} className=" text-black font-semibold cursor-pointer ">Sign up</span>
+          <span
+            onClick={openRegister}
+            className=" text-black font-semibold cursor-pointer "
+          >
+            Sign up
+          </span>
         </div>
         <Icon
           className="absolute right-2 top-2 rounded-full hover:bg-gray-300 hover:cursor-pointer  "
           icon="gridicons:cross"
           width={30}
           height={30}
-          onClick={() => setClose(true)}
+          onClick={onClose}
         />
       </form>
     </div>
