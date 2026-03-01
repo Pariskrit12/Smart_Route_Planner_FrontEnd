@@ -2,21 +2,25 @@ import { Icon } from "@iconify/react";
 import React, { useState } from "react";
 import Button from "./Button";
 import Input from "../auth/Input";
-
-const Register = ({showLogin}) => {
+import { validation } from "../../utils/validation.js";
+const Register = ({ showLogin,onClose }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [close, setClose] = useState(false);
-  console.log(close);
+ 
+  const [error, setError] = useState({});
 
   const formHandler = (e) => {
     e.preventDefault();
+    const validationErrors = validation(username, email, password);
+    setError(validationErrors);
+    if (Object.keys(validationErrors).length !== 0) return; //Checks if there is any error
+    setError({});
     setUsername("");
     setEmail("");
     setPassword("");
   };
-  if (close) return null;
+
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/40 backdrop-blur-sm ">
       <form
@@ -53,13 +57,15 @@ const Register = ({showLogin}) => {
             type="text"
             onChange={(e) => setUsername(e.target.value)}
             value={username}
+            error={error.username}
           />
           <Input
             label="Email"
             placeholder="johndoe@gmail.com"
-            type="email"
+            type="text"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            error={error.email}
           />
           <Input
             label="Password"
@@ -67,6 +73,7 @@ const Register = ({showLogin}) => {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            error={error.password}
           />
         </div>
         <Button
@@ -76,14 +83,19 @@ const Register = ({showLogin}) => {
         />
         <div className="flex gap-2  text-gray-500">
           Already have an account?
-          <span onClick={showLogin} className=" text-black font-semibold cursor-pointer">Sign in</span>
+          <span
+            onClick={showLogin}
+            className=" text-black font-semibold cursor-pointer"
+          >
+            Sign in
+          </span>
         </div>
         <Icon
           className="absolute right-2 top-2 rounded-full hover:bg-gray-300 hover:cursor-pointer  "
           icon="gridicons:cross"
           width={30}
           height={30}
-          onClick={() => setClose(true)}
+          onClick={onClose}
         />
       </form>
     </div>
