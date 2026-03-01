@@ -92,8 +92,15 @@ const Navbar = () => {
           </>
         )}
       </nav>
-      {loginOpen && <Login onClose={() => setLoginOpen(false)} />}
-      {registerOpen && <Register onClose={() => setRegisterOpen(false)} />}
+      {loginOpen && (<Login onClose={() => setLoginOpen(false)} openRegister={()=>{
+        setLoginOpen(false);
+        setRegisterOpen(true);
+      }}/>
+    )}
+      {registerOpen && (<Register onClose={() => setRegisterOpen(false)}showLogin={()=>{
+        setRegisterOpen(false)
+        setLoginOpen(true)
+      }}/>)}
     </>
   );
 };
