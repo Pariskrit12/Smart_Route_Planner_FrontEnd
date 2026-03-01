@@ -1,12 +1,12 @@
 import { Icon } from "@iconify/react";
 import React, { useState } from "react";
 
-const Input = ({ label, placeholder, type, onChange, value }) => {
+const Input = ({ label, placeholder, type, onChange, value,error }) => {
   const [showPassword, setShowPassword] = useState(false);
   const actualType =
     type === "password" ? (showPassword ? "text" : "password") : type;
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col  ">
       <label className="font-semibold">{label}</label>
       <div className="border rounded-lg p-2 border-gray-300 flex items-center gap-2 justify-between  ">
         <input
@@ -25,11 +25,8 @@ const Input = ({ label, placeholder, type, onChange, value }) => {
           />
         )}
       </div>
-      {type === "password" && (
-        <span className="text-sm text-gray-400 mt-1">
-          Password must contain at least one capital letter, one number, one special
-          character , and Minimum length should be 8 characters .
-        </span>
+      {error && (
+        <span  className="flex text-red-700 ">{error}</span>
       )}
     </div>
   );
