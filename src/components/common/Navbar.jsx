@@ -44,18 +44,29 @@ const Navbar = () => {
           </div>
         </div>
         {isHome ? (
-          <div className="flex gap-2">
-            <Button
-              name="Sign Up"
-              className="bg-blue-700 text-white p-1 px-2 rounded-xl font-semibold"
-              onClick={registerButtonToggle}
-            />
-            <Button
-              name="Login"
-              className="bg-black text-white p-1 px-2 rounded-xl font-semibold"
-              onClick={loginButtonToggle}
-            />
-          </div>
+          <>
+            <div onClick={hamburgerHandler} className=" relative md:hidden ">
+              <Icon icon="pajamas:hamburger" width="20" height="20" />
+              {open && (
+                <div className="absolute top-6 right-0 bg-white shadow-lg rounded-lg p-3 flex flex-col gap-3">
+                  <Button name="Login" onClick={loginButtonToggle}/>
+                  <Button name="SignUp" onClick={registerButtonToggle}/>
+                </div>
+              )}
+            </div>
+            <div className="hidden md:flex gap-2">
+              <Button
+                name="Sign Up"
+                className="bg-blue-700 text-white p-1 px-2 rounded-xl font-semibold"
+                onClick={registerButtonToggle}
+              />
+              <Button
+                name="Login"
+                className="bg-black text-white p-1 px-2 rounded-xl font-semibold"
+                onClick={loginButtonToggle}
+              />
+            </div>
+          </>
         ) : (
           <>
             <div onClick={hamburgerHandler} className=" relative md:hidden ">
@@ -92,15 +103,24 @@ const Navbar = () => {
           </>
         )}
       </nav>
-      {loginOpen && (<Login onClose={() => setLoginOpen(false)} openRegister={()=>{
-        setLoginOpen(false);
-        setRegisterOpen(true);
-      }}/>
-    )}
-      {registerOpen && (<Register onClose={() => setRegisterOpen(false)}showLogin={()=>{
-        setRegisterOpen(false)
-        setLoginOpen(true)
-      }}/>)}
+      {loginOpen && (
+        <Login
+          onClose={() => setLoginOpen(false)}
+          openRegister={() => {
+            setLoginOpen(false);
+            setRegisterOpen(true);
+          }}
+        />
+      )}
+      {registerOpen && (
+        <Register
+          onClose={() => setRegisterOpen(false)}
+          showLogin={() => {
+            setRegisterOpen(false);
+            setLoginOpen(true);
+          }}
+        />
+      )}
     </>
   );
 };
