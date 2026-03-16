@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import Button from "./Button";
 import Input from "../auth/Input";
 import { validation } from "../../utils/validation.js";
-const Register = ({ showLogin,onClose }) => {
+import axios from "axios";
+import Login from "./Login.jsx";
+const Register = ({ showLogin, onClose }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
- 
   const [error, setError] = useState({});
 
   const formHandler = (e) => {
@@ -20,7 +21,20 @@ const Register = ({ showLogin,onClose }) => {
     setEmail("");
     setPassword("");
   };
-
+  const registerUser = async () => {
+    try {
+      const response = await axios.post("/server/api/users/register", {
+        username,
+        email,
+        password,
+      });
+      if (response.data.success === true) {
+        showLogin();
+      }
+    } catch (error) {
+      console.log("Error while registering user", error);
+    }
+  };
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/40 backdrop-blur-sm ">
       <form
@@ -77,6 +91,7 @@ const Register = ({ showLogin,onClose }) => {
           />
         </div>
         <Button
+          onClick={registerUser}
           type="submit"
           name="Create Account"
           className="flex border bg-black text-white font-semibold w-full justify-center p-2 rounded-lg"
