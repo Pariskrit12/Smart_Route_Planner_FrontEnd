@@ -3,27 +3,41 @@ import React, { useState } from "react";
 import Button from "./Button";
 import Input from "../auth/Input";
 import { validation } from "../../utils/validation";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const Login = ({ openRegister,onClose }) => {
-  const [username, setUsername] = useState("");
+const Login = ({ openRegister, onClose }) => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-
   const [error, setError] = useState({});
-  const formHandler = (e) => {
+
+  const navigate = useNavigate();
+
+  const formHandler = async (e) => {
     e.preventDefault();
 
-    const validationErrors = validation(username, undefined, password);
+    const validationErrors = validation(undefined, email, password);
     setError(validationErrors);
 
     if (Object.keys(validationErrors).length !== 0) return;
 
-    setError({});
-    setPassword("");
-    setUsername("");
-   
+    try {
+      const response = await axios.post("/server/api/users/login", {
+        email,
+        password,
+      });
+      if (response.data.success === true) {
+        setError({});
+        setPassword("");
+        setEmail("");
+        onClose();
+        navigate("/");
+      }
+    } catch (error) {
+      console.log("Error while login user", error);
+    }
   };
- 
+
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/40 backdrop-blur-sm ">
       <form
@@ -52,12 +66,12 @@ const Login = ({ openRegister,onClose }) => {
         </div>
         <div className="w-full flex flex-col gap-5">
           <Input
-            label="Username"
-            placeholder="johnDoe"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            error={error.username}
+            label="Email"
+            placeholder="johndoe@gmail.com"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            error={error.email}
           />
           <Input
             label="Password"
