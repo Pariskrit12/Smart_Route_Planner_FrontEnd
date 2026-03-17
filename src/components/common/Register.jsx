@@ -4,24 +4,17 @@ import Button from "./Button";
 import Input from "../auth/Input";
 import { validation } from "../../utils/validation.js";
 import axios from "axios";
-import Login from "./Login.jsx";
 const Register = ({ showLogin, onClose }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({});
 
-  const formHandler = (e) => {
+  const formHandler = async (e) => {
     e.preventDefault();
     const validationErrors = validation(username, email, password);
     setError(validationErrors);
     if (Object.keys(validationErrors).length !== 0) return; //Checks if there is any error
-    setError({});
-    setUsername("");
-    setEmail("");
-    setPassword("");
-  };
-  const registerUser = async () => {
     try {
       const response = await axios.post("/server/api/users/register", {
         username,
@@ -29,12 +22,18 @@ const Register = ({ showLogin, onClose }) => {
         password,
       });
       if (response.data.success === true) {
+        setError({});
+        setUsername("");
+        setEmail("");
+        setPassword("");
+        onClose();
         showLogin();
       }
     } catch (error) {
       console.log("Error while registering user", error);
     }
   };
+
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/40 backdrop-blur-sm ">
       <form
@@ -91,9 +90,8 @@ const Register = ({ showLogin, onClose }) => {
           />
         </div>
         <Button
-          onClick={registerUser}
-          type="submit"
           name="Create Account"
+          type="submit"
           className="flex border bg-black text-white font-semibold w-full justify-center p-2 rounded-lg"
         />
         <div className="flex gap-2  text-gray-500">
